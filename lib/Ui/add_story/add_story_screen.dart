@@ -5,11 +5,12 @@ import 'package:best/Ui/add_text_story/add_text_story.dart';
 import 'package:best/Ui/choose_type_story/choose_type_story.dart';
 import 'package:best/Ui/restaurant_profile/restaurant_profile_page.dart';
 import 'package:best/Ui/story/story_page_video.dart';
-import 'package:best/CameraVideoRecorder.dart';
 import 'package:best/core/constent.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:media_gallery/media_gallery.dart';
+
+import '../../CameraVideoRecorder.dart';
 
 class AddStoryPage extends StatefulWidget {
   @override
@@ -145,6 +146,8 @@ class _AddStoryPageState extends State<AddStoryPage> {
   File image_profile;
   final picker = ImagePicker();
 
+  // your code
+  // this is the method
   void bottomSheetCameraOrVideo(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -208,23 +211,23 @@ class _AddStoryPageState extends State<AddStoryPage> {
   }
 
   Future<List<Media>> getImages() async {
-    final List<MediaCollection> collections =
-        await MediaGallery.listMediaCollections(
-      mediaTypes: [MediaType.video, MediaType.image],
-    );
-
-    final MediaPage imagePage = await collections[0].getMedias(
-      mediaType: MediaType.image,
-      take: 70,
-    );
-    final MediaPage videoPage = await collections[0].getMedias(
-      mediaType: MediaType.video,
-      take: 10,
-    );
-    final List<Media> allMedias = [
-      ...imagePage.items,
-      ...videoPage.items,
-    ]..sort((x, y) => y.creationDate.compareTo(x.creationDate));
+    // final List<MediaCollection> collections =
+    //     await MediaGallery.listMediaCollections(
+    //   mediaTypes: [MediaType.video, MediaType.image],
+    // );
+    //
+    // final MediaPage imagePage = await collections[0].getMedias(
+    //   mediaType: MediaType.image,
+    //   take: 70,
+    // );
+    // final MediaPage videoPage = await collections[0].getMedias(
+    //   mediaType: MediaType.video,
+    //   take: 10,
+    // );
+    // final List<Media> allMedias = [
+    //   ...imagePage.items,
+    //   ...videoPage.items,
+    // ]..sort((x, y) => y.creationDate.compareTo(x.creationDate));
 
 //    final allImages = collections[0];
 //    final imagePage = await allImages.getMedias(
@@ -232,7 +235,8 @@ class _AddStoryPageState extends State<AddStoryPage> {
 //      take: 50,
 //    );
 
-    return allMedias;
+  //  return allMedias;
+    return [];
   }
 
   @override

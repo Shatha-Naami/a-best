@@ -82,9 +82,7 @@ class _CameraVideoRecorderState extends State<CameraVideoRecorder>
       },
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: AppBar(
-          title: const Text('Camera example'),
-        ),
+
         body: Stack(
           children: <Widget>[
             Container(
