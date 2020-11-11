@@ -47,11 +47,7 @@ class _ContinuosFadeInFadeOutState extends State<ContinuosFadeInFadeOut>
   initState() {
     super.initState();
     controller = AnimationController(
-      duration: const Duration(
-        milliseconds: 800,
-      ),
-      vsync: null,
-    );
+        duration: const Duration(milliseconds: 800), vsync: this);
 
     animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
     _playAnimation();

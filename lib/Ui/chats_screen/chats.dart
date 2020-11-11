@@ -1,11 +1,7 @@
 import 'package:best/Ui/edit_chats_screen/edit_chats.dart';
 import 'package:best/core/constent.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:random_color/random_color.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:best/model/message.dart';
 
 class ChatsScreen extends StatefulWidget {
   @override
@@ -19,253 +15,270 @@ class _ProfileScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xffF7F7FA),
         body: Container(
-          color: Colors.white,
+          color: Color(0xffF7F7FA),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 30,
-                margin: EdgeInsets.fromLTRB(
-                  20.0,
-                  20.0,
-                  20.0,
-                  0.0,
-                ),
+                height: 70,
+                margin: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      margin: EdgeInsets.only(top: 32),
                       child: Text(
                         'Chats',
                         style: titleStyle.copyWith(
-                          color: Colors.black,
-                          fontSize: 30,
-                        ),
+                            color: Colors.black,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                    InkWell(
-                      child: Container(
-                        child: Image.asset(
-                          'assets/image/edit.png',
-                          width: 40,
-                          height: 40,
-                          color: Colors.black,
-                        ),
-                      ),
-                      onTap: () {
-                        pushNewScreen(
-                          context,
-                          screen: EditChatsScreen(),
-                          withNavBar: false, // OPTIONAL VALUE. True by default.
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //       builder: (context) => EditChatsScreen()),
-                        // );
-                      },
-                    )
+                   InkWell(
+                     child:  Container(
+                       child: Image.asset(
+                         'assets/image/edit.png',
+                         width: 36,
+                         height: 36,
+                         color: Colors.black,
+                       ),
+                     ),
+                     onTap: (){
+                       pushNewScreen(
+                         context,
+                         screen: EditChatsScreen(),
+                         withNavBar: false, // OPTIONAL VALUE. True by default.
+                         pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                       );
+                       // Navigator.push(
+                       //   context,
+                       //   MaterialPageRoute(
+                       //       builder: (context) => EditChatsScreen()),
+                       // );
+                     },
+                   )
                   ],
                 ),
               ),
-              SizedBox(
-                height: 22,
-              ),
+              SizedBox(height: 32,),
               Expanded(
-                child: Container(
-                  child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      // controller: _listControllerSlider,
-                      itemCount: chats.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final Message chat = chats[index];
-                        return Slidable(
-                          actionPane: SlidableDrawerActionPane(),
-                          actionExtentRatio: 0.25,
-                          actions: [
-                            IconSlideAction(
-                              caption: 'Archive',
-                              color: Color(0xFF9BA5BF),
-                              icon: Icons.archive,
-                            ),
-                          ],
-                          secondaryActions: <Widget>[
-                            IconSlideAction(
-                              caption: 'Delete',
-                              color: Colors.red,
-                              icon: Icons.delete,
-                              onTap: () {
-                                setState(() {
-                                  chats.removeAt(index);
-                                  Scaffold.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text("Message has deleted"),
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    controller: _listControllerSlider,
+                    itemCount: 2,
+                    itemBuilder:(BuildContext context, index){
+                      return (index ==0 )?
+                      Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.only(left: 12,top: 16,bottom: 16),
+                        child:Column(
+                          children: [
+                            Row(
+                              children: [
+                                Stack(
+                                  alignment: Alignment.bottomLeft,
+                                  children: [
+                                    Container(
+                                      width: 65,
+                                      height: 65,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'https://cdn.extra.ie/wp-content/uploads/2020/03/11123037/Chloe-Agnew-2.jpg'),
+                                              fit: BoxFit.cover),
+                                          color: Colors.white,
+                                          borderRadius:
+                                          BorderRadius.all(Radius.circular(60)),
+                                          border: Border.all(
+                                              color: Color(0xffFF635A), width: 1.5)),
                                     ),
-                                  );
-                                });
-                              },
-                            ),
-                          ],
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  margin:
-                                      EdgeInsets.fromLTRB(10.0, 0.0, 5.0, 5.0),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 5.0,
-                                    vertical: 8.0,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                      5.0,
-                                      0.0,
-                                      5.0,
-                                      0.0,
+                                    Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff00F86B),
+                                          border: Border.all(color: Colors.white, width: 5),
+                                          borderRadius:
+                                          BorderRadius.all(Radius.circular(45))),
+                                    )
+                                  ],
+                                ),
+                                Expanded(
+                                    child: Container(
+                                        width: 45,
+                                        child: ListTile(
+                                          title: Text(
+                                            'Etham Walker',
+                                            style: titleStyle.copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          subtitle: Text(
+                                            'Hey when are you going? 😎',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: titleStyle.copyWith(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w100),
+                                          ),
+                                        ))),
+                                Container(
+                                  alignment: Alignment.topCenter,
+                                  width: 100,
+                                  child: ListTile(
+                                    title: Text(
+                                      '9:45 PM',
+                                      style: titleStyle.copyWith(
+                                          color: Color(0xff9F9F9F), fontWeight: FontWeight.w500,fontSize: 14),
                                     ),
-                                    child: Row(
+                                    subtitle: Stack(
+                                      alignment: Alignment.center,
                                       children: [
-                                        Row(
-                                          children: <Widget>[
-                                            Stack(
-                                              alignment: Alignment.bottomLeft,
-                                              children: [
-                                                CircleAvatar(
-                                                  radius: 37.0,
-                                                  backgroundColor: RandomColor()
-                                                          .randomColor(
-                                                        colorSaturation:
-                                                            ColorSaturation
-                                                                .highSaturation,
-                                                      ),
-                                                  child: CircleAvatar(
-                                                    radius: 36.0,
-                                                    backgroundColor:
-                                                        Color(0xFFFFFFFF),
-                                                    child: CircleAvatar(
-                                                      radius: 35.0,
-                                                      backgroundImage:
-                                                          AssetImage(
-                                                        'assets/image/girl.png',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color: chat.sender.online
-                                                        ? Color(0xFF0BCC83)
-                                                        : Color(0xFFD5D4D4),
-                                                    border: Border.all(
-                                                      color: Colors.white,
-                                                      width: 5,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(45),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(width: 15.0),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text(
-                                                  chat.sender.name,
-                                                  style: TextStyle(
-                                                    fontSize: 17.0,
-                                                    color: Color(0xFF222B45),
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 5.0),
-                                                Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.45,
-                                                  child: Text(
-                                                    chat.text,
-                                                    style: TextStyle(
-                                                      fontSize: 14.0,
-                                                      color: chat.unread
-                                                          ? Color(0XFF000000)
-                                                          : Color(0XFF78849E),
-                                                    ),
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                        Container(
+                                          width: 40,
+                                          height: 24,
+                                          margin: EdgeInsets.only(top: 12,bottom: 0),
+                                          decoration: BoxDecoration(
+                                              color: Color(0xff0BCC83),
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(22))),
                                         ),
-                                        SizedBox(width: 30.0),
-                                        Column(
-                                          children: <Widget>[
-                                            Text(chat.time),
-                                            SizedBox(height: 10.0),
-                                            Container(
-                                              padding: EdgeInsets.all(5.0),
-                                              width: 35.0,
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                color: chat.unread
-                                                    ? Color(0xFF0BCC83)
-                                                    : Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(30.0),
-                                              ),
-                                              child: chat.unread
-                                                  ? Text(
-                                                      '18',
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFFFFFFFF),
-                                                        fontSize: 13,
-                                                      ),
-                                                    )
-                                                  : SvgPicture.asset(
-                                                      'assets/image/typing.svg',
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(top: 12,bottom: 0),
+                                          //  padding: EdgeInsets.only(bottom: 12),
+
+                                          child: Text(
+                                            '14',
+                                            style: titleStyle.copyWith(color: Colors.white,fontSize: 16),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                color: Colors.grey[200],
-                                margin: EdgeInsets.only(
-                                  left: 25,
-                                  right: 25,
+                              ],
+                            ),
+                            SizedBox(height: 8,),
+                            Container(
+                              color: Colors.grey[200],
+
+                              margin: EdgeInsets.only(left: 12,right: 12),
+                              height: 2,
+                              width: MediaQuery.of(context).size.width,
+                            )
+                          ],
+                        )
+                      ):
+
+                      Container(
+                        color: Colors.white,
+                        padding: EdgeInsets.only(left: 12,top: 0,bottom: 16),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Stack(
+                                  alignment: Alignment.bottomLeft,
+                                  children: [
+                                    Container(
+                                      width: 65,
+                                      height: 65,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  'https://cdn.extra.ie/wp-content/uploads/2020/03/11123037/Chloe-Agnew-2.jpg'),
+                                              fit: BoxFit.cover),
+                                          color: Colors.white,
+                                          borderRadius:
+                                          BorderRadius.all(Radius.circular(60)),
+                                          border: Border.all(
+                                              color: Color(0xff3ACCE1), width: 2)),
+                                    ),
+                                    Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffD5D4D4),
+                                          border: Border.all(color: Colors.white, width: 5),
+                                          borderRadius:
+                                          BorderRadius.all(Radius.circular(45))),
+                                    )
+                                  ],
                                 ),
-                                height: 1,
-                                width: MediaQuery.of(context).size.width,
-                              )
-                            ],
-                          ),
-                        );
-                      }),
-                ),
+                                Expanded(
+                                    child: Container(
+                                        width: 45,
+                                        child: ListTile(
+                                          title: Text(
+                                            'Duran Clayton',
+                                            style: titleStyle.copyWith(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          subtitle: Text(
+                                            'Sure, lets do it.',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: titleStyle.copyWith(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w100),
+                                          ),
+                                        ))),
+                                Container(
+                                  alignment: Alignment.topCenter,
+                                  width: 100,
+                                  child: ListTile(
+                                    title: Text(
+                                      '9:45 PM',
+                                      style: titleStyle.copyWith(
+                                          color: Color(0xff9F9F9F), fontWeight: FontWeight.w500,fontSize: 14),
+                                    ),
+                                    // subtitle: Stack(
+                                    //   alignment: Alignment.center,
+                                    //   children: [
+                                    //     Container(
+                                    //       width: 45,
+                                    //       height: 28,
+                                    //       margin: EdgeInsets.only(top: 12,bottom: 12),
+                                    //       decoration: BoxDecoration(
+                                    //           color: Color(0xff0BCC83),
+                                    //           borderRadius:
+                                    //           BorderRadius.all(Radius.circular(22))),
+                                    //     ),
+                                    //     Container(
+                                    //       margin: EdgeInsets.only(top: 12,bottom: 12),
+                                    //       //  padding: EdgeInsets.only(bottom: 12),
+                                    //
+                                    //       child: Text(
+                                    //         '14',
+                                    //         style: titleStyle.copyWith(color: Colors.white,fontSize: 18),
+                                    //       ),
+                                    //     )
+                                    //   ],
+                                    // ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8,),
+                            Container(
+                              color: Colors.grey[200],
+                              margin: EdgeInsets.only(left: 12,right: 12),
+                              height: 2,
+                              width: MediaQuery.of(context).size.width,
+                            )
+                          ],
+                        ),
+                      );
+                    }),
               )
+
             ],
           ),
         ),
