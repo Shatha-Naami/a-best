@@ -49,7 +49,6 @@ class _MainScreenState extends State<MainTabsScreen> {
         title: 'Chats',
         activeColor: Color(0xff222B45),
         inactiveColor: Colors.grey,
-
       ),
       PersistentBottomNavBarItem(
         icon: ImageIcon(AssetImage('assets/image/profile.png')),
@@ -66,7 +65,7 @@ class _MainScreenState extends State<MainTabsScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = PersistentTabController(initialIndex: 2);
+    _controller = PersistentTabController(initialIndex: 0);
     _hideNavBar = false;
   }
 

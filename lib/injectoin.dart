@@ -15,15 +15,19 @@ import 'package:best/data/repository/repository.dart';
 final sl = GetIt.instance;
 
 Future iniGetIt() async {
-  sl.registerLazySingleton(() => ((Dio(BaseOptions(
-      baseUrl: BaseUrl,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        "charset": "utf-8",
-        "Accept-Charset": "utf-8"
-      },
-      responseType: ResponseType.plain)))));
+  sl.registerLazySingleton(
+    () => ((Dio(
+      BaseOptions(
+          baseUrl: BaseUrl,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            "charset": "utf-8",
+            "Accept-Charset": "utf-8"
+          },
+          responseType: ResponseType.plain),
+    ))),
+  );
 
   // data
   sl.registerLazySingleton<IDbHelper>(() => DbHelper());

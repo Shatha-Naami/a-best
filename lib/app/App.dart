@@ -48,8 +48,8 @@ class _AppState extends State<App> {
                       return MaterialApp(
                           title: "App",
                           debugShowCheckedModeBanner: false,
-                         home: ListRestaurantPage(),
-                        //  home: MainTabsScreen(),
+                          // home: ListRestaurantPage(),
+                          home: MainTabsScreen(),
                           locale: snapshotLanguage.data == AppLanguageKeys.AR
                               ? Locale('ar', '')
                               : Locale('en', ''),

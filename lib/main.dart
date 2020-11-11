@@ -8,13 +8,7 @@ import 'Ui/test.dart';
 //List<CameraDescription> cameras = [];
 
 Future<void> main() async {
-//  try {
-   WidgetsFlutterBinding.ensureInitialized();
-//    cameras = await availableCameras();
-//  } on CameraException catch (e) {
-//    logError(e.code, e.description);
-//  }
-
+  WidgetsFlutterBinding.ensureInitialized();
   await iniGetIt();
   runApp(App());
 }
